@@ -1,1 +1,96 @@
-/* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css2?family=Quicksand&family=Roboto&display=swap");
+
+body {
+  background-color: rgb(251, 251, 251);
+}
+
+.modal-content {
+  border-radius: 15px;
+  overflow: auto;
+}
+
+.modal-new {
+  color: white;
+  background-color: rgb(66, 128, 179);
+}
+
+.modal-att {
+  color: white;
+  background-color: rgb(53, 158, 149);
+}
+
+.modal-danger {
+  color: white;
+  background-color: rgb(168, 82, 82);
+}
+
+.btn-primary {
+  border-color: rgb(66, 128, 179);
+  background-color: rgb(66, 128, 179);
+}
+
+.btn-primary:hover {
+  border-color: rgb(66, 128, 179);
+  background-color: rgb(55, 107, 149);
+}
+
+.btn-outline-primary {
+  border-color: rgb(66, 128, 179);
+  color: rgb(66, 128, 179);
+}
+
+.btn-outline-primary:hover {
+  border-color: rgb(66, 128, 179);
+  background-color: rgb(55, 107, 149);
+}
+
+.btn-success {
+  background-color: rgb(53, 158, 149);
+  border-color: rgb(53, 158, 149);
+}
+
+.btn-success:hover {
+  background-color: rgb(37, 114, 107);
+  border-color: rgb(53, 158, 149);
+}
+
+.btn-outline-success {
+  color: rgb(53, 158, 149);
+  border: none;
+}
+
+.btn-outline-success:hover {
+  background-color: rgb(37, 114, 107);
+}
+
+.btn-danger {
+  background-color: rgb(168, 82, 82);
+  border-color: rgb(168, 82, 82);
+}
+
+.btn-danger:hover {
+  background-color: rgb(139, 70, 70);
+  border-color: rgb(168, 82, 82);
+}
+
+.btn-outline-danger {
+  color: rgb(168, 82, 82);
+  border: none;
+}
+
+.btn-outline-danger:hover {
+  background-color: rgb(139, 70, 70);
+}
+
+.btn-info {
+  background-color: rgb(77, 209, 226);
+}
+
+.btn-info:hover {
+  background-color: rgb(66, 179, 194);
+}
+
+button.btn-close {
+  background-color: white;
+  border-radius: 50%;
+}

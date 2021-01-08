@@ -1,0 +1,14 @@
+.container {
+  background-color: rgb(253, 253, 253);
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
+    rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+}
+
+h1 {
+  font-family: "Roboto", sans-serif;
+  font-weight: bold;
+}
+
+h4 {
+  font-family: "Quicksand", sans-serif;
+}

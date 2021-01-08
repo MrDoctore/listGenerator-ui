@@ -1,0 +1,117 @@
+/*Geral*/
+h1 {
+  font-family: "Roboto", sans-serif;
+  text-align: center;
+}
+
+h4 {
+  font-family: "Quicksand", sans-serif;
+}
+
+.buttons {
+  text-align: end;
+}
+
+.actions {
+  font-size: 10px;
+}
+
+.image-upload > input {
+  display: none;
+}
+
+.config {
+  width: fit-content;
+  min-width: 200px;
+}
+
+/*Folha A4*/
+.a4 {
+  position: relative;
+  margin: auto;
+  width: 21cm;
+  height: 29.7cm;
+  background-color: rgb(255, 255, 255);
+  padding: 10px;
+  -webkit-box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px,
+    rgba(0, 0, 0, 0.05) 0px 1px 1px 0px;
+  -moz-box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px,
+    rgba(0, 0, 0, 0.05) 0px 1px 1px 0px;
+  box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px,
+    rgba(0, 0, 0, 0.05) 0px 1px 1px 0px;
+}
+
+.margem {
+  position: relative;
+  height: 100%;
+  padding: 10px;
+  border: solid 1px;
+  border-radius: 10px;
+}
+
+.header {
+  text-align: center;
+  height: 100px;
+}
+
+.img {
+  position: absolute;
+  height: 90px;
+  width: 200px;
+}
+
+.img-preview {
+  height: 100%;
+  width: auto;
+}
+
+.title {
+  padding-top: 15px;
+  font-size: 35px;
+}
+
+.subtitle {
+  margin-top: -10px;
+  font-size: 18px;
+}
+
+.table-overflow {
+  max-height: 700px;
+  overflow-y: auto;
+}
+
+.table-overflow thead th {
+  position: sticky;
+  top: 0;
+  background-color: rgb(255, 255, 255);
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 3px 0px;
+}
+
+.tableList th,
+.tableList td {
+  padding: 4px 0px 1px 2px;
+  border: 1px solid #dee2e6;
+}
+
+.table1 > tbody {
+  vertical-align: middle;
+  font-size: larger;
+  font-family: "Quicksand";
+}
+
+.monitor {
+  font-size: 20px;
+  position: absolute;
+  bottom: 15px;
+}
+.data {
+  font-size: 20px;
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+}
+
+.pag {
+  text-align: center;
+  margin-top: 15px;
+}

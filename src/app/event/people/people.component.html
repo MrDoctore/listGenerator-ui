@@ -1,0 +1,455 @@
+<div class="content mb-3">
+  <div class="row">
+    <div class="col-3">
+      <!-- Button PDF modal -->
+      <button
+        type="button"
+        class="btn btn-success"
+        data-bs-toggle="modal"
+        data-bs-target="#a4Modal"
+      >
+        <i class="fas fa-file-pdf"></i> Gerar PDF
+      </button>
+    </div>
+    <div class="col-6">
+      <h2 class="text-center">Pessoas Cadastradas</h2>
+    </div>
+    <div class="col-3 buttons">
+      <!-- btnAddModal-->
+      <button
+        type="button"
+        class="btn btn-primary m-1"
+        data-bs-toggle="modal"
+        data-bs-target="#addModal"
+        (click)="clear()"
+      >
+        <i class="fas fa-user-plus"></i> Inserir
+      </button>
+      <!-- btnUploadModal-->
+      <button
+        type="button"
+        class="btn btn-success m-1"
+        data-bs-toggle="modal"
+        data-bs-target="#upModal"
+      >
+        <i class="fas fa-upload"></i> Importar
+      </button>
+    </div>
+  </div>
+  <div class="table-overflow">
+    <table class="table table1">
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">NOME</th>
+          <th scope="col">EMAIL</th>
+          <th scope="col">SALA</th>
+          <th scope="col" class="text-center">AÇÕES</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let person of people">
+          <td>{{ person.id }}</td>
+          <td>{{ person.name }}</td>
+          <td>{{ person.email }}</td>
+          <td>{{ person.classroom }}</td>
+          <td class="text-center">
+            <div class="actions">
+              <button
+                class="btn btn-outline-success m-1"
+                (click)="setPerson(person)"
+                data-bs-toggle="modal"
+                data-bs-target="#attModal"
+              >
+                <i class="fas fa-sync-alt"></i>
+              </button>
+              <button
+                class="btn btn-outline-danger m-1"
+                (click)="setPerson(person)"
+                data-bs-toggle="modal"
+                data-bs-target="#confirmation"
+              >
+                <i class="fas fa-trash-alt"></i>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- UploadModal -->
+<div
+  class="modal fade"
+  id="upModal"
+  tabindex="-1"
+  aria-labelledby="upModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="upModalLabel">Importar Lista</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <div class="cardLista">
+          <div class="card-header bg-light">
+            <div
+              class="file btn upazul"
+              style="position: relative; overflow: hidden"
+            >
+              <i class="fas fa-folder-open"></i> Selecione
+              <input
+                type="file"
+                class="custom-file-input"
+                id="inputFile"
+                style="position: absolute; opacity: 0; right: 0; top: 0"
+                (change)="onChange($event)"
+              />
+            </div>
+            <button
+              type="button"
+              class="btn upverde ml-3 mr-3"
+              (click)="onUpload()"
+            >
+              <i class="fas fa-upload"></i> Importar
+            </button>
+          </div>
+          <div class="progress">
+            <div
+              class="progress-bar"
+              role="progressbar"
+              [style.width]="progress + '%'"
+            >
+              {{ progress }}%
+            </div>
+          </div>
+          <div class="card-body text-center prev">
+            <div class="nomePrevia">
+              {{ listName }}
+            </div>
+          </div>
+        </div>
+        <small id="help" class="form-text text-muted mb-3"
+          >*Faça o upload da lista antes de prosseguir</small
+        >
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Fechar
+        </button>
+        <button
+          type="button"
+          class="btn btn-primary"
+          data-bs-dismiss="modal"
+          (click)="import()"
+        >
+          Salvar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- addModal -->
+<div
+  class="modal fade"
+  id="addModal"
+  tabindex="-1"
+  aria-labelledby="addModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header modal-new">
+        <h5 class="modal-title" id="addModalLabel">Inserir</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <div class="mb-3">
+          <label for="addNamePerson" class="form-label">Nome</label>
+          <input
+            type="text"
+            class="form-control"
+            id="addNamePerson"
+            [(ngModel)]="person.name"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="addEmailPerson" class="form-label">Email</label>
+          <input
+            type="text"
+            class="form-control"
+            id="addEmailPerson"
+            [(ngModel)]="person.email"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="addClassroomPerson" class="form-label">Sala</label>
+          <input
+            type="text"
+            class="form-control"
+            id="addClassroomPerson"
+            [(ngModel)]="person.classroom"
+          />
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+          (click)="clear()"
+        >
+          Fechar
+        </button>
+        <button
+          type="button"
+          (click)="addPerson()"
+          data-bs-dismiss="modal"
+          class="btn btn-primary"
+        >
+          Salvar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- attModal -->
+<div
+  class="modal fade"
+  id="attModal"
+  tabindex="-1"
+  aria-labelledby="attModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header modal-att">
+        <h5 class="modal-title" id="attModalLabel">Atualizar</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <div class="mb-3">
+          <label for="namePerson" class="form-label">Nome</label>
+          <input
+            type="text"
+            class="form-control"
+            id="namePerson"
+            [(ngModel)]="person.name"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="emailPerson" class="form-label">Email</label>
+          <input
+            type="text"
+            class="form-control"
+            id="emailPerson"
+            [(ngModel)]="person.email"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="classroomPerson" class="form-label">Sala</label>
+          <input
+            type="text"
+            class="form-control"
+            id="classroomPerson"
+            [(ngModel)]="person.classroom"
+          />
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+          (click)="clear()"
+        >
+          Fechar
+        </button>
+        <button
+          type="button"
+          class="btn btn-success"
+          data-bs-dismiss="modal"
+          (click)="updatePerson()"
+        >
+          Salvar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Confirmation Modal -->
+<div
+  class="modal fade"
+  id="confirmation"
+  tabindex="-1"
+  aria-labelledby="delModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header modal-danger">
+        <h5 class="modal-title" id="delModalLabel">Confirmação</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+          (click)="clear()"
+        ></button>
+      </div>
+      <div class="modal-body">Deseja realmente excluir?</div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+          (click)="clear()"
+        >
+          Fechar
+        </button>
+        <button
+          type="button"
+          class="btn btn-danger"
+          data-bs-dismiss="modal"
+          (click)="deletePerson()"
+        >
+          Excluir
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal PDF -->
+<div
+  class="modal fade"
+  id="a4Modal"
+  tabindex="-1"
+  aria-labelledby="a4ModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="a4ModalLabel">Prévia</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body" style="background-color: rgb(251, 251, 251)">
+        <div class="row">
+          <div class="col">
+            <div class="config">
+              <label style="font-weight: bold"
+                >Selecione a Logo da Empresa</label
+              >
+              <input
+                class="form-control"
+                id="file-input"
+                type="file"
+                style="width: 400px"
+                (change)="onChangeIMG($event)"
+              />
+            </div>
+          </div>
+          <div class="col">
+            <div class="config" style="float: right">
+              <label style="font-weight: bold">Sala</label>
+              <select
+                [(ngModel)]="selected"
+                class="form-control"
+                (change)="onOptionsSelected()"
+                required
+                (focus)="filter()"
+              >
+                <option [ngValue]="null" [hidden]="true" [disabled]="true">
+                  Selecione...
+                </option>
+                <option *ngFor="let sala of salas" [ngValue]="sala">
+                  {{ sala }}
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <hr style="color: rgb(158, 158, 158)" />
+        <div class="a4" id="content-print">
+          <div class="margem">
+            <div class="header">
+              <div class="img">
+                <img
+                  class="img-preview"
+                  [src]="imgURL"
+                  id="previa"
+                  *ngIf="imgURL"
+                />
+              </div>
+
+              <div contenteditable="true" class="title">{{ title }}</div>
+              <div contenteditable="true" class="subtitle">{{ subtitle }}</div>
+            </div>
+            <div class="tabela">
+              <table class="table table-striped tableList table-sm">
+                <thead>
+                  <tr>
+                    <th scope="col">NOME</th>
+                    <th scope="col">SALA</th>
+                    <th scope="col" style="width: 35%">ASSINATURA</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr
+                    *ngFor="
+                      let person of filtrado
+                        | paginate: { itemsPerPage: 30, currentPage: p }
+                    "
+                  >
+                    <td>{{ person.name }}</td>
+                    <td>{{ person.classroom }}</td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="monitor">Monitor(a): ___________________________</div>
+            <div class="data">Data: _____/_____/_____</div>
+          </div>
+        </div>
+        <div class="pag">
+          <pagination-controls (pageChange)="p = $event"></pagination-controls>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Fechar
+        </button>
+        <button type="button" class="btn btn-primary" (click)="downloadPdf()">
+          <i class="fas fa-file-download"></i> Baixar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
