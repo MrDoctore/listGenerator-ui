@@ -158,17 +158,14 @@ export class PeopleComponent implements OnInit {
   }
 
   addPerson() {
+    this.person.event = this.event;
     this.peopleService.add(this.event.id, this.person).subscribe(
-      () => {
+      (response) => {
         this.toastr.success('Registro inserido');
         this.listPeople();
       },
-      (response) => {
-        let msg = 'Erro inesperado';
-        if (response.error.fieldMessage) {
-          msg = response.error.fieldMessage;
-        }
-        this.toastr.error(msg, 'Erro!');
+      (error) => {
+        this.toastr.error(error.message, 'Erro!');
       }
     );
   }
