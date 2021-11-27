@@ -6,7 +6,7 @@ Aplicação desenvolvida com o objetivo de exemplificar as seguintes funcionalid
 
 
 Demonstração:
-www.youtube.com/embed/BdmUmwU0Bco
+https://youtu.be/BdmUmwU0Bco
 
 
 Back: https://github.com/MrDoctore/listGenerator-app
